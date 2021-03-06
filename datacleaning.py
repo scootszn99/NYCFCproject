@@ -16,8 +16,9 @@ df2 = df2[df2['Date'].dt.month == 9]
 # merging goals added and salary data
 df = pd.merge(df, df2, how="left", on=["Player", "Season"])
 
-# dropping redundant columns
+# dropping redundant columns and renaming
 df = df.drop(['Team_y', 'Position_y', 'Date'], axis=1)
+df = df.rename(columns={"Team_x": "Team", "Position_x": "Position"})
 
 # exporting ready to use data
 df.to_csv('exportedmetrics.csv', index=False)
